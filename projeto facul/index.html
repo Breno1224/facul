@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACADMIX - Login</title>
+    <link rel="stylesheet" href="css/estilo.css">
+
+    <!-- Font Awesome via CDN sem necessidade de chave -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Novo contêiner para centralizar logo + login -->
+    <div class="main-container">
+        <div class="logo-container">
+            <img src="img/sanquim.png" alt="Logo Colégio Sanquim" class="logo-img">
+        </div>
+
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Senha</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required>
+                    <i id="toggle-password" class="fa-solid fa-eye"></i>
+                </div>
+
+                <label for="role">Escolha seu papel</label>
+                <select id="role" name="role" required>
+                    <option value="aluno">Aluno</option>
+                    <option value="docente">Docente</option>
+                </select>
+
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('toggle-password');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
+</body>
+</html>
