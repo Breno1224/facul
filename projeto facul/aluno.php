@@ -30,9 +30,9 @@ $nome_aluno = $_SESSION['usuario_nome']; // Pega o nome da sessão
         <nav class="sidebar" id="sidebar">
             <ul>
                 <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="boletim.html"><i class="fas fa-book"></i> Boletim</a></li>
+                <li><a href="boletim.php"><i class="fas fa-book"></i> Boletim</a></li>
                 <li><a href="#"><i class="fas fa-tasks"></i> Tarefas</a></li>
-                <li><a href="calendario.html"><i class="fas fa-calendar"></i> calendario</a></li>
+                <li><a href="calendario.php"><i class="fas fa-calendar"></i> calendario</a></li>
                 <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
                 
             </ul>
