@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACADMIX - Login</title>
     <link rel="stylesheet" href="css/estilo.css">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -20,8 +18,8 @@
             <h2>Login</h2>
             <form id="loginForm" method="POST" action="login.php">
 
-                <label for="username">Usuário</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Usuário (Email)</label>
+                <input type="email" id="username" name="username" required>
 
                 <label for="password">Senha</label>
                 <div class="password-container">
@@ -42,59 +40,21 @@
 
     <script>
         const togglePassword = document.getElementById('toggle-password');
-        const password = document.getElementById('password');
+        const passwordInput = document.getElementById('password'); // Renomeado para evitar conflito
 
         togglePassword.addEventListener('click', () => {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
             togglePassword.classList.toggle('fa-eye');
             togglePassword.classList.toggle('fa-eye-slash');
         });
 
-        const loginForm = document.getElementById('loginForm');
-
-        // Usuários e senhas pré-definidos
-        const alunos = [
-            { usuario: "aluno1@sanquim.com", senha: "1234" },
-            { usuario: "aluno2@sanquim.com", senha: "1234" },
-            { usuario: "aluno3@sanquim.com", senha: "1234" },
-            { usuario: "aluno4@sanquim.com", senha: "1234" },
-            { usuario: "aluno5@sanquim.com", senha: "1234" }
-        ];
-
-        const docentes = [
-            { usuario: "prof1@sanquim.com", senha: "1234" },
-            { usuario: "prof2@sanquim.com", senha: "1234" },
-            { usuario: "prof3@sanquim.com", senha: "1234" },
-            { usuario: "prof4@sanquim.com", senha: "1234" },
-            { usuario: "prof5@sanquim.com", senha: "1234" }
-        ];
-
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value.trim();
-            const senha = document.getElementById('password').value.trim();
-            const role = document.getElementById('role').value;
-
-            let valido = false;
-
-            if (role === "aluno") {
-                valido = alunos.some(user => user.usuario === username && user.senha === senha);
-                if (valido) {
-                    window.location.href = "aluno.php";
-                } else {
-                    alert("Usuário ou senha de aluno incorretos.");
-                }
-            } else if (role === "docente") {
-                valido = docentes.some(user => user.usuario === username && user.senha === senha);
-                if (valido) {
-                    window.location.href = "professor.php";
-                } else {
-                    alert("Usuário ou senha de docente incorretos!.");
-                }
-            }
-        });
+        // REMOVA TODO O BLOCO DE SCRIPT ABAIXO DESTA LINHA ATÉ O FINAL DO <script> ANTERIOR
+        // const loginForm = document.getElementById('loginForm');
+        // const alunos = [ ... ];
+        // const docentes = [ ... ];
+        // loginForm.addEventListener('submit', function(e) { ... });
+        // ESTE BLOCO INTEIRO FOI REMOVIDO
     </script>
 
 </body>

@@ -1,4 +1,4 @@
-<?php
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -56,4 +56,3 @@
     <script src="js/calendario.js"></script>
 </body>
 </html>
-?>

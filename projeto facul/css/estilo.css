@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #b3e675, #63e3c3);
+   background-color:  #186D6A;
     background-size: 400% 400%;
     
 }
@@ -94,7 +94,7 @@ select {
 
 button {
     padding: 0.8rem;
-    background-color: #007bff;
+    background-color: #C58624;
     color: white;
     border: none;
     border-radius: 4px;

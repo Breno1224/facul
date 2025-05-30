@@ -1,9 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario']) || $_SESSION['role'] != 'aluno') {
-    header("Location: index.html");
+// Para aluno.php
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'aluno') {
+    header("Location: index.html"); // Redireciona se não for aluno logado
     exit();
 }
+$nome_aluno = $_SESSION['usuario_nome']; // Pega o nome da sessão
 ?>
 
 

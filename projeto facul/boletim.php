@@ -1,4 +1,4 @@
-<?php
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -136,4 +136,3 @@ subjectRows.forEach(row => {
     </script>
 </body>
 </html>
-?>

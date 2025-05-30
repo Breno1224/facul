@@ -1,4 +1,12 @@
-
+<?php
+session_start();
+// Para aluno.php
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'docente') {
+    header("Location: index.html"); // Redireciona se não for aluno logado
+    exit();
+}
+$nome_professor = $_SESSION['usuario_nome']; // Pega o nome da sessão
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
