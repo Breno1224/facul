@@ -1,13 +1,13 @@
 <?php
 session_start();
-include("db.php"); // Sua conexão com o banco
+include("db.php"); 
 
-// Definindo a que página redirecionar em caso de sucesso
-$redirect_page_aluno = "aluno.php";      // <- Verifique se é este o nome da sua página de aluno
-$redirect_page_docente = "professor.php"; // <- Verifique se é este o nome da sua página de professor
+$redirect_page_aluno = "aluno.php";
+$redirect_page_docente = "professor.php";
+$redirect_page_coordenacao = "coordenacao_painel.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']); // Deve ser o email
+    $username = trim($_POST['username']); 
     $senha_fornecida = trim($_POST['password']);
     $role = $_POST['role'];
 
@@ -17,10 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $sql = "";
+    $error_msg = null; 
+
     if ($role === "aluno") {
-        $sql = "SELECT id, nome, email, senha, turma_id FROM alunos WHERE email = ?";
+        // ATUALIZADO: Adicionado tema_perfil
+        $sql = "SELECT id, nome, email, senha, turma_id, tema_perfil FROM alunos WHERE email = ?";
     } elseif ($role === "docente") {
-        $sql = "SELECT id, nome, email, senha FROM professores WHERE email = ?";
+        // ATUALIZADO: Adicionado tema_perfil
+        $sql = "SELECT id, nome, email, senha, tema_perfil FROM professores WHERE email = ?";
+    } elseif ($role === "coordenacao") {
+        // ATUALIZADO: Adicionado tema_perfil
+        $sql = "SELECT id, nome, email, senha, tema_perfil FROM coordenadores WHERE email = ?";
     } else {
         echo "<script>alert('Papel inválido selecionado.'); window.location.href='index.html';</script>";
         exit();
@@ -34,45 +41,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_num_rows($result) == 1) {
             $user = mysqli_fetch_assoc($result);
+            $senha_do_banco = $user['senha'];
+            $login_sucesso = false;
 
-            // ATENÇÃO: Verificação de senha em texto plano (NÃO SEGURO PARA PRODUÇÃO)
-            // Em produção, use password_verify($senha_fornecida, $user['senha'])
-            if ($senha_fornecida === $user['senha']) { // << MUDAR PARA password_verify em produção
+            // Lembre-se de usar password_verify para senhas com hash!
+            // Exemplo para coordenação (você ajustou para texto plano para teste):
+            if ($role === "coordenacao") {
+                if ($senha_fornecida === $senha_do_banco) { // Comparação de texto plano
+                    $login_sucesso = true;
+                } else {
+                    $error_msg = "Usuário ou senha da coordenação incorretos.";
+                }
+            } elseif ($role === "aluno" || $role === "docente") {
+                // Assumindo que alunos e docentes podem estar usando password_verify ou texto plano
+                // Mantenha a lógica de verificação de senha que estava funcionando para eles
+                // Para consistência com o exemplo da coordenação, se eles também usam texto plano:
+                if ($senha_fornecida === $senha_do_banco) {
+                     $login_sucesso = true;
+                } else {
+                     // Se estiverem usando hash, use: if(password_verify($senha_fornecida, $senha_do_banco))
+                // if(password_verify($senha_fornecida, $senha_do_banco)) { // PARA SENHAS COM HASH
+                //    $login_sucesso = true;
+                // } else {
+                    $error_msg = "Usuário ou senha incorretos.";
+                }
+            }
+
+            if ($login_sucesso) {
                 $_SESSION['usuario_id'] = $user['id'];
                 $_SESSION['usuario_nome'] = $user['nome'];
                 $_SESSION['usuario_email'] = $user['email'];
                 $_SESSION['role'] = $role;
+                // **** ADICIONAR O TEMA À SESSÃO ****
+                $_SESSION['tema_usuario'] = !empty($user['tema_perfil']) ? $user['tema_perfil'] : 'padrao';
+                // **** FIM DA ADIÇÃO ****
 
                 if ($role === "aluno") {
-                    $_SESSION['turma_id'] = $user['turma_id']; // Útil para alunos
+                    $_SESSION['turma_id'] = $user['turma_id'];
                     header("Location: " . $redirect_page_aluno);
                     exit();
                 } elseif ($role === "docente") {
                     header("Location: " . $redirect_page_docente);
                     exit();
+                } elseif ($role === "coordenacao") {
+                    header("Location: " . $redirect_page_coordenacao);
+                    exit();
                 }
-            } else {
-                // Senha incorreta
-                $error_msg = "Usuário ou senha incorretos.";
             }
         } else {
-            // Usuário não encontrado
-            $error_msg = "Usuário ou senha incorretos.";
+            $error_msg = ($role === "coordenacao") ? "Usuário ou senha da coordenação incorretos." : "Usuário ou senha incorretos.";
         }
         mysqli_stmt_close($stmt);
     } else {
-        // Erro na preparação da query
-        $error_msg = "Erro no sistema de login. Tente novamente mais tarde.";
-        // Logar o erro: error_log(mysqli_error($conn));
+        $error_msg = "Erro no sistema de login: " . mysqli_error($conn);
     }
 
-    echo "<script>alert('".$error_msg."'); window.location.href='index.html';</script>";
+    if (isset($error_msg)) {
+        echo "<script>alert('".$error_msg."'); window.location.href='index.html';</script>";
+    } else {
+        echo "<script>alert('Ocorreu uma falha no login. Tente novamente.'); window.location.href='index.html';</script>";
+    }
     exit();
 
 } else {
-    // Se não for POST, redireciona para o index
     header("Location: index.html");
     exit();
 }
-mysqli_close($conn);
+if($conn) mysqli_close($conn);
 ?>

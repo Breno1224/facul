@@ -1,0 +1,289 @@
+/* css/temas_perfil.css */
+
+/* Importar a fonte pixelada para o tema 8-bit (já deve estar no <head> de perfil_professor.php) */
+/* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
+
+/* ----- Tema Padrão (Base) ----- */
+body.theme-padrao {
+    background-color: #F3F3F3; /* Fundo claro elegante */
+    color: #2C1B17; /* Texto principal */
+    font-family: 'Arial', sans-serif; /* Fonte padrão do seu site */
+}
+body.theme-padrao header, 
+body.theme-padrao .sidebar { /* Estilo base da sidebar para o tema padrão */
+    background-color: #208A87 !important; /* Cor original da sua sidebar */
+    color: white !important;
+}
+body.theme-padrao header h1, 
+body.theme-padrao .sidebar a {
+    color: white !important;
+}
+body.theme-padrao .sidebar a:hover, 
+body.theme-padrao .sidebar a.active {
+    background-color: #186D6A !important; /* Cor original de hover/active */
+}
+body.theme-padrao .main-content { background-color: #F3F3F3; } /* Fundo do conteúdo principal */
+body.theme-padrao .profile-container { /* Ajustes para garantir que o conteúdo do perfil não seja afetado por temas mais drásticos */
+    padding: 1rem;
+}
+body.theme-padrao .profile-header h2 { color: #2C1B17; }
+body.theme-padrao .profile-photo { border-color: #D69D2A; } /* Amarelo Mostarda */
+body.theme-padrao .profile-section { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+body.theme-padrao .profile-section h3 { color: #186D6A; border-bottom-color: #eee; } /* Ciano Escuro */
+body.theme-padrao .profile-section li { border-left-color: #208A87; background-color: #f8f9fa; } /* Ciano */
+body.theme-padrao .profile-section p strong { color: #2C1B17; }
+body.theme-padrao .edit-section summary { 
+    color: #186D6A; 
+    background-color:#f0f8ff; 
+    padding: 0.5rem; /* Padding padrão para este tema */
+    font-weight: bold; /* Adicionado para consistência com outros .summary */
+    cursor: pointer; /* Adicionado para consistência */
+    display: inline-block; /* Para o padding funcionar bem */
+    border-radius: 4px; /* Adicionado para consistência */
+}
+body.theme-padrao .edit-section summary:hover { background-color:#e6f2ff; }
+body.theme-padrao .edit-section button[type="submit"],
+body.theme-padrao .upload-form-container button[type="submit"] { background-color: #208A87; }
+body.theme-padrao .edit-section button[type="submit"]:hover,
+body.theme-padrao .upload-form-container button[type="submit"]:hover { background-color: #186D6A; }
+
+/* ----- Tema 8-Bit Retrô (Revitalizado e com Correção na Sidebar e Edit Perfil) ----- */
+body.theme-8bit {
+    background-color: #2A2A2A;
+    color: #E0E0E0;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px; 
+    line-height: 1.8;
+    image-rendering: pixelated;
+}
+body.theme-8bit header, 
+body.theme-8bit .sidebar {
+    background-color: #1C1C1C !important; 
+    border-bottom: 4px solid #FF9500; 
+    box-shadow: 0 3px 0 #000000; 
+}
+body.theme-8bit header h1 { 
+    color: #00E0E0 !important; 
+    text-shadow: 1px 1px #000000;
+    font-size: 1.3rem; 
+}
+body.theme-8bit .sidebar ul li a {
+    color: #00E0E0 !important; 
+    text-shadow: 1px 1px #000000;
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 11px !important; 
+    padding: 14px 1rem !important; 
+}
+body.theme-8bit .sidebar ul li a i {
+    font-size: 13px !important; 
+    margin-right: 10px !important;
+    vertical-align: -1px; 
+}
+body.theme-8bit .sidebar a:hover, 
+body.theme-8bit .sidebar a.active {
+    background-color: #333333 !important;
+    color: #FFFF55 !important; 
+}
+
+body.theme-8bit .main-content { background-color: #2A2A2A; }
+body.theme-8bit .profile-header h2 { color: #00E0E0; text-shadow: 2px 2px #D6006E; }
+body.theme-8bit .profile-photo { border: 4px solid #FF9500; box-shadow: 0 0 0 3px #000000; background-color: #404040; }
+body.theme-8bit .profile-header .member-since { color: #B0B0B0; }
+body.theme-8bit .profile-section { background-color: #383838; border: 3px solid #00E0E0; box-shadow: 4px 4px 0px #000000; padding: 12px; }
+body.theme-8bit .profile-section h3 { color: #FF9500; border-bottom: 3px dotted #00E0E0; padding-bottom: 8px; margin-bottom: 12px; text-shadow: 1px 1px #000; }
+body.theme-8bit .profile-section p, 
+body.theme-8bit .profile-section li { color: #D0D0D0; }
+body.theme-8bit .profile-section li { background-color: #484848; border-left: 4px solid #FF9500; padding: 8px 10px; margin-bottom: 6px; }
+body.theme-8bit .profile-section p strong { color: #00E0E0; }
+
+/* ESTILOS ATUALIZADOS PARA O BOTÃO "EDITAR PERFIL" (SUMMARY) NO TEMA 8-BIT */
+body.theme-8bit .edit-section summary {
+    color: #00E0E0;                     
+    background-color: #383838;          
+    border: 2px solid #FF9500;          
+    padding: 8px 14px;                  /* Padding ajustado (8px cima/baixo, 14px lados) */
+    font-size: 12px;                    /* AUMENTADO font-size para o texto do summary */
+    /* font-family: 'Press Start 2P', cursive; é herdado */
+    display: inline-flex;               /* Para alinhar ícone e texto e aplicar padding corretamente */
+    align-items: center;                /* Alinha o ícone e texto verticalmente */
+    cursor: pointer;
+    text-shadow: 1px 1px #000000;       
+    margin-bottom: 10px;   
+    line-height: 1.5;                   /* Ajuste para espaçamento vertical dentro do summary */
+    font-weight: normal;                /* Resetando o bold padrão do summary, se a fonte já for "bold" */
+}
+body.theme-8bit .edit-section summary:hover {
+    background-color: #484848;          
+    color: #FFFF55;                     
+}
+body.theme-8bit .edit-section summary i.fas { 
+    font-size: 12px;                    /* Ícone acompanha o tamanho do texto */
+    margin-right: 8px;                  /* Espaço entre o ícone e o texto */
+}
+body.theme-8bit .edit-section form { 
+    border: 2px solid #00E0E0; 
+    padding: 12px; 
+    background-color: #303030; 
+}
+/* FIM DOS ESTILOS ATUALIZADOS PARA O BOTÃO "EDITAR PERFIL" */
+
+body.theme-8bit .edit-section textarea, 
+body.theme-8bit .edit-section select,
+body.theme-8bit .upload-form-container input[type="file"] {
+    background-color: #1C1C1C; color: #00E0E0; border: 2px solid #FF9500; padding: 8px;
+    font-family: 'Press Start 2P', cursive; font-size: 10px;
+}
+body.theme-8bit .edit-section ::placeholder { color: #888; }
+body.theme-8bit .edit-section button[type="submit"],
+body.theme-8bit .upload-form-container button[type="submit"] {
+    background-color: #FF9500; color: #1C1C1C; text-shadow: none;
+    border: 2px solid #000000; box-shadow: 2px 2px 0px #000000;
+    padding: 10px 14px; font-family: 'Press Start 2P', cursive; font-size: 10px;
+}
+body.theme-8bit .edit-section button[type="submit"]:hover,
+body.theme-8bit .upload-form-container button[type="submit"]:hover { background-color: #FFB03B; }
+body.theme-8bit .status-message-profile { border: 2px solid #00E0E0; text-shadow: 1px 1px #000; }
+body.theme-8bit .status-success { background-color: #1E4620; color: #90EE90; border-color: #90EE90; }
+body.theme-8bit .status-error { background-color: #501E1E; color: #FF8080; border-color: #FF8080; }
+
+
+/* ----- Tema Natureza Calma ----- */
+body.theme-natureza { 
+    background-color: #F0F4F0; 
+    color: #3E5622; 
+    font-family: 'Georgia', serif;
+    line-height: 1.7;
+}
+body.theme-natureza header, 
+body.theme-natureza .sidebar {
+    background-color: #556B2F !important; 
+    border-bottom: 3px solid #A0A080; 
+}
+body.theme-natureza header h1, 
+body.theme-natureza .sidebar a {
+    color: #F5F5DC !important; 
+}
+body.theme-natureza .sidebar a:hover, 
+body.theme-natureza .sidebar a.active {
+    background-color: #6B8E23 !important; 
+    color: #FFFFF0 !important; 
+}
+body.theme-natureza .main-content { background-color: #F0F4F0; }
+body.theme-natureza .profile-header h2 { color: #556B2F; }
+body.theme-natureza .profile-photo { border-color: #8FBC8F; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+body.theme-natureza .profile-header .member-since { color: #6B8E23; }
+body.theme-natureza .profile-section { background-color: #FCFFF5; border: 1px solid #D8E8D8; box-shadow: 0 1px 5px rgba(0,0,0,0.08); }
+body.theme-natureza .profile-section h3 { color: #556B2F; border-bottom-color: #C0D0C0; }
+body.theme-natureza .profile-section p, 
+body.theme-natureza .profile-section li { color: #4F4F4F; }
+body.theme-natureza .profile-section li { background-color: #E8F5E9; border-left-color: #8FBC8F; }
+body.theme-natureza .profile-section p strong { color: #556B2F; }
+body.theme-natureza .edit-section summary { color: #556B2F; background-color:#E8F5E9; padding: 0.5rem; font-weight: bold; cursor: pointer; display: inline-block; border-radius:4px;}
+body.theme-natureza .edit-section summary:hover { background-color:#D8E8D8; }
+body.theme-natureza .edit-section button[type="submit"],
+body.theme-natureza .upload-form-container button[type="submit"] { background-color: #6B8E23; }
+body.theme-natureza .edit-section button[type="submit"]:hover,
+body.theme-natureza .upload-form-container button[type="submit"]:hover { background-color: #556B2F; }
+
+
+/* ----- Tema Acadêmico Clássico ----- */
+body.theme-academico { 
+    background-color: #FDF5E6; 
+    color: #4A3B31; 
+    font-family: 'Garamond', 'Times New Roman', serif;
+    line-height: 1.7;
+}
+body.theme-academico header, 
+body.theme-academico .sidebar {
+    background-color: #5D4037 !important; 
+    border-bottom: 3px solid #A1887F; 
+}
+body.theme-academico header h1, 
+body.theme-academico .sidebar a {
+    color: #FFF3E0 !important; 
+}
+body.theme-academico .sidebar a:hover, 
+body.theme-academico .sidebar a.active {
+    background-color: #795548 !important; 
+    color: #FFFFFF !important;
+}
+body.theme-academico .main-content { background-color: #FDF5E6; }
+body.theme-academico .profile-header h2 { color: #3E2723; }
+body.theme-academico .profile-photo { border-color: #795548; box-shadow: 0 3px 7px rgba(0,0,0,0.2); }
+body.theme-academico .profile-header .member-since { color: #6D4C41; }
+body.theme-academico .profile-section { background-color: #FFFBF2; border: 1px solid #D7CCC8; }
+body.theme-academico .profile-section h3 { color: #5D4037; border-bottom-color: #BCAAA4; font-variant: small-caps; }
+body.theme-academico .profile-section p, 
+body.theme-academico .profile-section li { color: #4E342E; }
+body.theme-academico .profile-section li { background-color: #EFEBE9; border-left-color: #8D6E63; }
+body.theme-academico .profile-section p strong { color: #3E2723; }
+body.theme-academico .edit-section summary { color: #5D4037; background-color:#EFEBE9; padding: 0.5rem; font-weight: bold; cursor: pointer; display: inline-block; border-radius:4px;}
+body.theme-academico .edit-section summary:hover { background-color:#D7CCC8; }
+body.theme-academico .edit-section button[type="submit"],
+body.theme-academico .upload-form-container button[type="submit"] { background-color: #795548; }
+body.theme-academico .edit-section button[type="submit"]:hover,
+body.theme-academico .upload-form-container button[type="submit"]:hover { background-color: #5D4037; }
+
+
+/* ----- Tema Modo Escuro Simples (Restaurado e Ajustado) ----- */
+body.theme-darkmode {
+    background-color: #1c1c1e; 
+    color: #e0e0e0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body.theme-darkmode header, 
+body.theme-darkmode .sidebar {
+    background-color: #252526 !important; 
+    border-bottom: 1px solid #3a3a3c !important;
+    color: #d4d4d4 !important;
+}
+body.theme-darkmode header h1, 
+body.theme-darkmode .sidebar a {
+    color: #cccccc !important; 
+}
+body.theme-darkmode .sidebar a i {
+    color: #cccccc !important; 
+}
+body.theme-darkmode .sidebar a:hover, 
+body.theme-darkmode .sidebar a.active {
+    background-color: #3a3a3c !important; 
+    color: #ffffff !important; 
+}
+body.theme-darkmode .sidebar a.active i {
+    color: #ffffff !important;
+}
+body.theme-darkmode .main-content { background-color: #1c1c1e; }
+body.theme-darkmode .profile-container { color: #e0e0e0; }
+body.theme-darkmode .profile-header h2 { color: #bb86fc; } 
+body.theme-darkmode .profile-photo { border-color: #03dac6; } 
+body.theme-darkmode .profile-header .member-since { color: #a0a0a0; }
+body.theme-darkmode .profile-section {
+    background-color: #252526; 
+    border: 1px solid #3a3a3c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+body.theme-darkmode .profile-section h3 { color: #bb86fc; border-bottom-color: #3a3a3c; }
+body.theme-darkmode .profile-section p, 
+body.theme-darkmode .profile-section li { color: #c0c0c0; }
+body.theme-darkmode .profile-section li { background-color: #2f2f31; border-left-color: #03dac6; }
+body.theme-darkmode .profile-section p strong { color: #e0e0e0; }
+body.theme-darkmode .edit-section summary { color: #bb86fc; background-color:#2a2a2e; padding: 0.5rem; font-weight: bold; cursor: pointer; display: inline-block; border-radius:4px;}
+body.theme-darkmode .edit-section summary:hover { background-color:#3a3a3c; }
+body.theme-darkmode .edit-section textarea, 
+body.theme-darkmode .edit-section select,
+body.theme-darkmode .upload-form-container input[type="file"] {
+    background-color:#333333; color:#e0e0e0; border-color:#555555;
+}
+body.theme-darkmode .edit-section ::placeholder { color: #888; }
+body.theme-darkmode .edit-section button[type="submit"],
+body.theme-darkmode .upload-form-container button[type="submit"] {
+    background-color: #bb86fc; 
+    color: #121212; 
+}
+body.theme-darkmode .edit-section button[type="submit"]:hover,
+body.theme-darkmode .upload-form-container button[type="submit"]:hover {
+    background-color: #9f71d6;
+}
+body.theme-darkmode .status-message-profile { border: 1px solid #3a3a3c; }
+body.theme-darkmode .status-success { background-color: #2a3b2c; color: #a5d6a7; border-color: #385a3a; }
+body.theme-darkmode .status-error { background-color: #4d2e30; color: #ef9a9a; border-color: #7f3c3e; }

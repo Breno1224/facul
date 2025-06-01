@@ -1,0 +1,133 @@
+/* css/temas_globais.css */
+
+/* ... (estilos dos temas para perfil que já existem) ... */
+
+/* =========================================== */
+/* ESTILOS GLOBAIS PARA TEMAS (EXEMPLOS)   */
+/* =========================================== */
+
+/* ----- Tema Padrão (Global - já deve estar no seu professor.css/aluno.css) ----- */
+body.theme-padrao {
+    /* Seus estilos padrão globais, se não vierem de outro CSS */
+}
+body.theme-padrao .main-content .dashboard-section, /* Seções comuns */
+body.theme-padrao .main-content .form-section,
+body.theme-padrao .main-content .list-section {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+body.theme-padrao .main-content h2 { /* Títulos de página comuns */
+    color: #2C1B17;
+}
+/* Adicione mais seletores globais para o tema padrão se necessário */
+
+
+/* ----- Tema 8-Bit Retrô (Estilos Globais) ----- */
+body.theme-8bit {
+    /* font-family, font-size, background-color, color já definidos anteriormente */
+}
+/* Header e Sidebar já estilizados anteriormente para theme-8bit */
+
+body.theme-8bit .main-content h2, /* Títulos de página H2 no conteúdo principal */
+body.theme-8bit .main-content h3 { /* Subtítulos comuns */
+    color: #FF9500; /* Laranja para títulos */
+    text-shadow: 1px 1px #000;
+    border-bottom-color: #00E0E0; /* Ciano para bordas inferiores de títulos */
+}
+
+body.theme-8bit .main-content .dashboard-section,
+body.theme-8bit .main-content .form-section,
+body.theme-8bit .main-content .list-section {
+    background-color: #383838;
+    border: 3px solid #00E0E0;
+    box-shadow: 4px 4px 0px #000000;
+}
+body.theme-8bit .main-content table {
+    border: 2px solid #00E0E0;
+}
+body.theme-8bit .main-content th {
+    background-color: #1C1C1C;
+    color: #FF9500;
+    border: 1px dashed #00E0E0;
+    text-shadow: 1px 1px #000;
+}
+body.theme-8bit .main-content td {
+    border: 1px dashed #555;
+    color: #E0E0E0;
+}
+body.theme-8bit .main-content label {
+    color: #00E0E0;
+    text-shadow: 1px 1px #000;
+}
+body.theme-8bit .main-content input[type="text"],
+body.theme-8bit .main-content input[type="date"],
+body.theme-8bit .main-content input[type="email"],
+body.theme-8bit .main-content input[type="password"],
+body.theme-8bit .main-content input[type="url"],
+body.theme-8bit .main-content input[type="file"],
+body.theme-8bit .main-content textarea,
+body.theme-8bit .main-content select {
+    background-color: #1C1C1C;
+    color: #00E0E0;
+    border: 2px solid #FF9500;
+    font-family: 'Press Start 2P', cursive; /* Manter a fonte nos formulários */
+    font-size: 10px; /* Manter o tamanho da fonte */
+}
+body.theme-8bit .main-content button,
+body.theme-8bit .main-content input[type="submit"],
+body.theme-8bit .main-content button[type="button"] { /* Botões genéricos */
+    background-color: #FF9500;
+    color: #1C1C1C;
+    border: 2px solid #000000;
+    box-shadow: 2px 2px 0px #000000;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    text-shadow: none;
+}
+body.theme-8bit .main-content button:hover,
+body.theme-8bit .main-content input[type="submit"]:hover,
+body.theme-8bit .main-content button[type="button"]:hover {
+    background-color: #FFB03B;
+}
+
+/* ----- Tema Natureza Calma (Estilos Globais) ----- */
+body.theme-natureza .main-content .dashboard-section,
+body.theme-natureza .main-content .form-section,
+body.theme-natureza .main-content .list-section {
+    background-color: #FCFFF5;
+    border: 1px solid #D8E8D8;
+}
+body.theme-natureza .main-content h2 { color: #556B2F; }
+/* ... adicione mais estilos globais para o tema natureza ... */
+
+
+/* ----- Tema Acadêmico Clássico (Estilos Globais) ----- */
+body.theme-academico .main-content .dashboard-section,
+body.theme-academico .main-content .form-section,
+body.theme-academico .main-content .list-section {
+    background-color: #FFFBF2;
+    border: 1px solid #D7CCC8;
+}
+body.theme-academico .main-content h2 { color: #3E2723; }
+/* ... adicione mais estilos globais para o tema academico ... */
+
+
+/* ----- Tema Modo Escuro Simples (Estilos Globais) ----- */
+body.theme-darkmode .main-content .dashboard-section,
+body.theme-darkmode .main-content .form-section,
+body.theme-darkmode .main-content .list-section {
+    background-color: #252526;
+    border: 1px solid #3a3a3c;
+}
+body.theme-darkmode .main-content h2 { color: #bb86fc; }
+body.theme-darkmode .main-content label { color: #c0c0c0; }
+body.theme-darkmode .main-content input,
+body.theme-darkmode .main-content textarea,
+body.theme-darkmode .main-content select {
+     background-color:#333333; color:#e0e0e0; border-color:#555555;
+}
+body.theme-darkmode .main-content button,
+body.theme-darkmode .main-content input[type="submit"] {
+    background-color: #bb86fc; color: #121212;
+}
+/* ... adicione mais estilos globais para o tema darkmode ... */

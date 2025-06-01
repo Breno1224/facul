@@ -18,12 +18,14 @@
     <div class="container">
         <nav class="sidebar" id="sidebar">
             <ul>
-                <li><a href="aluno.html"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="#"><i class="fas fa-book"></i> Boletim</a></li>
+                <li><a href="aluno.php"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="boletim.php"><i class="fas fa-book"></i> Boletim</a></li>
                 <li><a href="#"><i class="fas fa-tasks"></i> Tarefas</a></li>
                 <li><a href="#"><i class="fas fa-calendar"></i> Horários</a></li>
-                <li><a href="calendario.html" class="active"><i class="fas fa-calendar-alt"></i> Calendário</a></li>
+                <li><a href="calendario.php" class="active"><i class="fas fa-calendar-alt"></i> Calendário</a></li>
                 <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
+                 <li><a href="materiais.php" class="active"><i class="fas fa-book-open"></i> Materiais Didáticos</a></li>
+                 <li><a href="comunicados_aluno.php"><i class="fas fa-bell"></i> Comunicados</a></li>
             </ul>
         </nav>
 

@@ -10,10 +10,19 @@ include 'db.php'; // Conexão com o banco
 $nome_professor = $_SESSION['usuario_nome'];
 $professor_id = $_SESSION['usuario_id']; // Guardamos o ID do professor
 
-// Buscar turmas e disciplinas do banco (idealmente, apenas as que o professor leciona)
-// Simplificado: buscando todas as turmas e disciplinas por enquanto
-$turmas_result = mysqli_query($conn, "SELECT id, nome_turma FROM turmas ORDER BY nome_turma");
-$disciplinas_result = mysqli_query($conn, "SELECT id, nome_disciplina FROM disciplinas ORDER BY nome_disciplina");
+// Define o identificador da página atual para a sidebar
+$currentPageIdentifier = 'lancar_notas';
+
+// Buscar turmas e disciplinas do banco
+// Idealmente, buscar apenas as turmas/disciplinas que ESTE professor leciona.
+// Por agora, a query busca todas, como no seu código original.
+// Para buscar apenas as do professor:
+// $sql_turmas_prof = "SELECT DISTINCT t.id, t.nome_turma FROM turmas t JOIN professores_turmas_disciplinas ptd ON t.id = ptd.turma_id WHERE ptd.professor_id = ? ORDER BY t.nome_turma";
+// $sql_disciplinas_prof = "SELECT DISTINCT d.id, d.nome_disciplina FROM disciplinas d JOIN professores_turmas_disciplinas ptd ON d.id = ptd.disciplina_id WHERE ptd.professor_id = ? ORDER BY d.nome_disciplina";
+// E então usar prepared statements com $professor_id.
+
+$turmas_result_query = mysqli_query($conn, "SELECT id, nome_turma FROM turmas ORDER BY nome_turma");
+$disciplinas_result_query = mysqli_query($conn, "SELECT id, nome_disciplina FROM disciplinas ORDER BY nome_disciplina");
 
 ?>
 <!DOCTYPE html>
@@ -21,23 +30,34 @@ $disciplinas_result = mysqli_query($conn, "SELECT id, nome_disciplina FROM disci
 <head>
     <meta charset="UTF-8">
     <title>Lançar Notas - ACADMIX</title>
-    <link rel="stylesheet" href="css/professor.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/professor.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* Estilos adicionais se necessário */
+        /* Estilos adicionais se necessário (mantidos do seu código) */
         .form-section label, .form-section select, .form-section input, .form-section button {
             margin-bottom: 10px;
             display: block;
-            width: calc(100% - 20px); /* Ajustar conforme padding/border */
+            width: calc(100% - 20px); 
         }
         .form-section select, .form-section input[type="text"], .form-section input[type="number"] {
             padding: 8px;
         }
-        .form-section button {
+        .form-section button { /* Estilo para o botão "Carregar Alunos" */
             padding: 10px 15px;
             background-color: #D69D2A;
             color: white;
             border: none;
             cursor: pointer;
+            width: auto; /* Para não ocupar 100% */
+        }
+         #alunosSection button[type="submit"] { /* Estilo para o botão "Lançar Notas" */
+            padding: 10px 15px;
+            background-color: #208A87; /* Cor primária do tema */
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            margin-top: 1rem;
         }
         #alunosSection table { margin-top: 15px; }
         #alunosSection th, #alunosSection td { text-align: left; padding: 8px; border: 1px solid #ddd;}
@@ -59,10 +79,15 @@ $disciplinas_result = mysqli_query($conn, "SELECT id, nome_disciplina FROM disci
 
     <div class="container">
         <nav class="sidebar" id="sidebar">
-            <ul>
-                <li><a href="professor.php"><i class="fas fa-home"></i> Início</a></li>
-                <li><a href="lancar-notas.php" class="active"><i class="fas fa-pen"></i> Lançar Notas</a></li>
-                </ul>
+            <?php
+            // Incluindo a sidebar padronizada do professor
+            $sidebar_path = __DIR__ . '/includes/sidebar_professor.php';
+            if (file_exists($sidebar_path)) {
+                include $sidebar_path;
+            } else {
+                echo "<p style='padding:1rem; color:white;'>Erro: Arquivo da sidebar não encontrado.</p>";
+            }
+            ?>
         </nav>
 
         <main class="main-content">
@@ -73,7 +98,7 @@ $disciplinas_result = mysqli_query($conn, "SELECT id, nome_disciplina FROM disci
                 <label for="turmaSelect">Turma:</label>
                 <select id="turmaSelect" name="turma_id">
                     <option value="">Selecione uma Turma</option>
-                    <?php while ($turma = mysqli_fetch_assoc($turmas_result)): ?>
+                    <?php while ($turma = mysqli_fetch_assoc($turmas_result_query)): ?>
                         <option value="<?php echo $turma['id']; ?>"><?php echo htmlspecialchars($turma['nome_turma']); ?></option>
                     <?php endwhile; ?>
                 </select>
@@ -81,7 +106,7 @@ $disciplinas_result = mysqli_query($conn, "SELECT id, nome_disciplina FROM disci
                 <label for="disciplinaSelect">Disciplina:</label>
                 <select id="disciplinaSelect" name="disciplina_id">
                     <option value="">Selecione uma Disciplina</option>
-                     <?php while ($disciplina = mysqli_fetch_assoc($disciplinas_result)): ?>
+                     <?php while ($disciplina = mysqli_fetch_assoc($disciplinas_result_query)): ?>
                         <option value="<?php echo $disciplina['id']; ?>"><?php echo htmlspecialchars($disciplina['nome_disciplina']); ?></option>
                     <?php endwhile; ?>
                 </select>
@@ -128,11 +153,12 @@ $disciplinas_result = mysqli_query($conn, "SELECT id, nome_disciplina FROM disci
 
     <script src="js/lancar-notas.js"></script>
     <script>
-        // Script do menu lateral (se o seu professor.js não for global)
+        // Script do menu lateral
         document.getElementById('menu-toggle').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('hidden'); // Adapte se a classe for outra
-            document.querySelector('.container').classList.toggle('full-width'); // Adapte se a classe for outra
+            document.getElementById('sidebar').classList.toggle('hidden'); 
+            document.querySelector('.container').classList.toggle('full-width'); 
         });
     </script>
 </body>
 </html>
+<?php if($conn) mysqli_close($conn); ?>
